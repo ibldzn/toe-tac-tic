@@ -96,10 +96,9 @@ void TicTacToe::play()
         std::size_t row = static_cast<std::size_t>(-1);
         std::size_t col = static_cast<std::size_t>(-1);
 
-        get_best_move(m_x_turn, row, col);
-        std::cout << "Best move: " << (row + 1) << ", " << (col + 1) << " (" << minimax(m_x_turn) << ")\n";
-
-        if (!m_x_turn) {
+        if (m_x_turn) {
+            get_best_move(m_x_turn, row, col);
+        } else {
             do {
                 row = tanya_input<decltype(row)>("row (1 - 3): ", [](const auto val) {
                     return val >= 1 && val <= 3;
