@@ -225,16 +225,7 @@ constexpr int TicTacToe::minimax(bool maximizing)
                 m_board[row][col] = maximizing ? TicTacToe::X_CHAR : TicTacToe::O_CHAR;
                 const auto score = minimax(!maximizing);
                 m_board[row][col] = TicTacToe::EMPTY_CELL;
-
-                if (maximizing) {
-                    if (score > best_score) {
-                        best_score = score;
-                    }
-                } else {
-                    if (score < best_score) {
-                        best_score = score;
-                    }
-                }
+                best_score = maximizing ? std::max(best_score, score) : std::min(best_score, score);
             }
         }
     }
