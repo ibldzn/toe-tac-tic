@@ -14,7 +14,7 @@ template <typename T, typename ValidateFn>
         { std::cin >> v };
     }
 // clang-format on
-static T tanya_input(const char* prompt, ValidateFn fn)
+static T ask_input(const char* prompt, ValidateFn fn)
 {
     T out = {};
 
@@ -37,10 +37,10 @@ static T tanya_input(const char* prompt, ValidateFn fn)
 }
 
 template <typename T>
-static T tanya_input(const char* prompt)
+static T ask_input(const char* prompt)
 {
     using type = typename std::conditional<std::is_trivially_copyable<T>::value, T, const T&>::type;
-    return tanya_input(prompt, []([[maybe_unused]] type val) { return true; });
+    return ask_input(prompt, []([[maybe_unused]] type val) { return true; });
 }
 
 TicTacToe::TicTacToe()
