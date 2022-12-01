@@ -100,14 +100,12 @@ void TicTacToe::play()
             get_best_move(m_x_turn, row, col);
         } else {
             do {
-                row = tanya_input<decltype(row)>("row (1 - 3): ", [](const auto val) {
-                    return val >= 1 && val <= 3;
+                const auto move_index = ask_input<std::size_t>("kolom (1 - 9): ", [](const auto val) {
+                    return val >= 1 && val <= 9;
                 });
-
-                col = tanya_input<decltype(col)>("col (1 - 3): ", [](const auto val) {
-                    return val >= 1 && val <= 3;
-                });
-            } while (!is_valid_move(--row, --col));
+                row = (move_index - 1) / 3;
+                col = (move_index - 1) % 3;
+            } while (!is_valid_move(row, col));
         }
 
         make_move(row, col);
