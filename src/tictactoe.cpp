@@ -13,7 +13,7 @@ template <typename T, typename ValidateFn>
         { std::cin >> v };
     }
 // clang-format on
-static T ask_input(const char* prompt, ValidateFn fn)
+static T ask_input(const char* prompt, ValidateFn&& fn)
 {
     T out = {};
 
